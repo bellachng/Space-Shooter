@@ -1,12 +1,12 @@
-# Pygame template - skeleton for a new pygame project
 import pygame
 import random
 from os import path
 
-# Note: dirname takes the directory name and ignores any value past the last \
+# Directory calls
 img_dir = path.join(path.dirname(r"C:\Users\Dagger\Documents\Development\Pygame\Space Shooter\test"), 'img')
 sound_dir = path.join(path.dirname(r"C:\Users\Dagger\Documents\Development\Pygame\Space Shooter\test"), 'sound') 
 
+# Window size, FPS, and Powerup Time
 WIDTH = 480 # width of game window
 HEIGHT = 600 # height of game window
 FPS = 60 # frames per second 
@@ -282,16 +282,6 @@ powerup_images = {}
 powerup_images['shield'] = pygame.image.load(path.join(img_dir, 'shield_gold.png')).convert()
 powerup_images['gun'] = pygame.image.load(path.join(img_dir, 'bolt_gold.png')).convert()
 
-# Load all game sounds
-"""
-shoot_sound = pygame.mixer.Sound(path.join(snd_dir, 'pew.wav'))
-expl_sounds = []
-for snd in ['expl3.wav', 'expl6.wav']:
-    expl_sounds.append(pygame.mixer.Sound(path.join(snd_dir, snd)))
-pygame.mixer.music.load(path.join(snd_dir, 'tgfcoder-FrozenJam-SeamlessLoop.ogg'))             # List music path here
-pygame.mixer.music.set_volume(0.4)
-"""
-
 # Add player sprites
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
@@ -303,7 +293,7 @@ for i in range(8):
     newmob()
 
 score = 0
-# pygame.mixer.music.play(loops=-1)           # Set music before game starts
+pygame.mixer.music.play(loops=-1)           # Set music before game starts
 
 # Game loop
 game_over = True
@@ -357,7 +347,7 @@ while running:
         if player.shield <= 0:
             death_explosion = Explosion(player.rect.center, 'player')           # Explosion animation upon death
             all_sprites.add(death_explosion)
-            player.hide()            # Hide the player, subtract the lives, and reset the shield
+            player.hide()                                                       # Hide the player, subtract the lives, and reset the shield
             player.lives -= 1
             player.shield = 100
 
